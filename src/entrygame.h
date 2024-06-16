@@ -18,4 +18,23 @@ class EntryGame{
         playerEtourdissement[2]=c;
     }
 
+    bool isActive(int joueur){
+        return playerEtourdissement[joueur]==0 || gpu.compare("GAME_OVER");
+    }
+    //valid actior
+    bool validAction(int avance, int joueur){
+        if (playerEtourdissement[joueur]>0 || gpu.compare("GAME_OVER")==0)
+            return true;
+                // get next haie from position
+        size_t haie = gpu.find("#",playerPosition[joueur]);
+        if( haie != std::string::npos){
+            if (haie-playerPosition[joueur]<=avance)
+                return false;
+            else 
+                return true;
+        }
+        else   
+            return true;
+    }
+
 };
