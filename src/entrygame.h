@@ -6,7 +6,14 @@ class EntryGame{
     public:
     string gpu;
     int playerPosition[3];
-    int playerEtourdissement[3];    
+    int playerEtourdissement[3];
+    void print(int i){
+
+        cerr << "g["<< i<< "].gpu = \"" << gpu << "\";"<< endl;
+        cerr << "g["<< i<< "].addPosition("<< playerPosition[0]<< "," << playerPosition[1] << "," << playerPosition[2]<< ");" << endl;
+        cerr << "g["<< i<< "].addEtourdissement(" << playerEtourdissement[0]<< "," << playerEtourdissement[1] << "," << playerEtourdissement[2]<<");" << endl;
+        
+    }
     void addPosition(int a, int b, int c){
         playerPosition[0]=a;
         playerPosition[1]=b;
@@ -19,22 +26,17 @@ class EntryGame{
     }
 
     bool isActive(int joueur){
-        return playerEtourdissement[joueur]==0 || gpu.compare("GAME_OVER");
+        if( gpu.compare("GAME_OVER")==0 )
+            return false;
+        
+        return playerEtourdissement[joueur]==0;
     }
     //valid actior
-    bool validAction(int avance, int joueur){
-        if (playerEtourdissement[joueur]>0 || gpu.compare("GAME_OVER")==0)
-            return true;
-                // get next haie from position
-        size_t haie = gpu.find("#",playerPosition[joueur]);
-        if( haie != std::string::npos){
-            if (haie-playerPosition[joueur]<=avance)
-                return false;
-            else 
-                return true;
-        }
-        else   
-            return true;
-    }
+    bool validUp(int joueur){
+        if(!isActive(joueur))
+            return false;
+        return gpu[playerPosition[joueur]+2]!='#';
 
+    }
+   
 };

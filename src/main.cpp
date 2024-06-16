@@ -37,16 +37,10 @@ int main()
             int reg_5;
             int reg_6;
             cin >> g[i].gpu >> reg_0 >> reg_1 >> reg_2 >> reg_3 >> reg_4 >> reg_5 >> reg_6; cin.ignore();
-            cerr << g[i].gpu << endl;
-            cerr << reg_0 << endl;
-            cerr << reg_1 << endl;
-            cerr << reg_2 << endl;
-            cerr << reg_3 << endl;
-            cerr << reg_4 << endl;
-            cerr << reg_5 << endl;
-            cerr << reg_6 << endl;
+            
             g[i].addPosition(reg_0,reg_1,reg_2);
             g[i].addEtourdissement(reg_3, reg_4, reg_5);
+            g[i].print(i);
         }
 
         // Write an action using cout. DON'T FORGET THE "<< endl"

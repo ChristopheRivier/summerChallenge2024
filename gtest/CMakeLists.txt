@@ -15,7 +15,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
-
+include_directories(../src)
 add_executable(
   main_test
   main_test.cc
@@ -24,6 +24,7 @@ target_link_libraries(
   main_test
   GTest::gtest_main
 )
+
 
 include(GoogleTest)
 gtest_discover_tests(main_test)

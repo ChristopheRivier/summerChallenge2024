@@ -52,13 +52,13 @@ class Game{
             int nbActive = 0;
             for( int i=0; i<size;++i){
 
-                if( t[i].validAction(2, joueur) ){
+                if( t[i].validUp(joueur) ){
                     ++a;
                 }
                 if( t[i].isActive(joueur))
                     ++nbActive;
             }
-            if( (size-a)< 3 )
+            if( (nbActive-a) >1 )
                 min = DistFGame::LEFT;
         }
         return getAction(min);
@@ -71,15 +71,15 @@ class Game{
         if (t.playerEtourdissement[joueur]>0 || t.gpu.compare("GAME_OVER")==0)
             return ret;
         // get next haie from position
-        size_t haie = t.gpu.find("#",t.playerPosition[joueur]);
+        size_t haie = t.gpu.find("#",t.playerPosition[joueur]-1);
         if( haie != std::string::npos){
             // from where I am
-            int dist = haie- t.playerPosition[joueur];
+            int dist = haie - (t.playerPosition[joueur]+1);
             if( dist > 3)
                 ret = DistFGame::RIGHT;
-            else if (dist ==3)
-                ret = DistFGame::DOWN;
             else if (dist ==2)
+                ret = DistFGame::DOWN;
+            else if (dist ==1)
                 ret = DistFGame::LEFT;
             else 
                 ret = DistFGame::UP;
