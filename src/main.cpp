@@ -19,7 +19,7 @@ int main()
     cin >> player_idx; cin.ignore();
     int nb_games;
     cin >> nb_games; cin.ignore();
-
+    Game summer(nb_games);
     // game loop
     while (1) {
         for (int i = 0; i < 3; i++) {
@@ -44,6 +44,6 @@ int main()
         // Write an action using cout. DON'T FORGET THE "<< endl"
         // To debug: cerr << "Debug messages..." << endl;
 
-        cout << "LEFT" << endl;
+        cout << summer.calculFirstGame(g[0],1,player_idx) << endl;
     }
 }
